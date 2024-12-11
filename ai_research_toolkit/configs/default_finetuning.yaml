@@ -1,0 +1,21 @@
+model:
+  type: "transformer"
+  name: "bert-base-uncased"
+  task: "classification"
+  num_labels: 2
+  pretrained_checkpoint: "./checkpoints/last.ckpt"
+
+data:
+  type: "huggingface"
+  dataset_name: "sst2"
+  split: "train"
+  val_split: "validation"
+  batch_size: 32
+  max_length: 128
+
+training:
+  max_epochs: 2
+  gpus: 1
+  learning_rate: 2e-5
+  precision: 16
+  output_dir: "./finetuned_checkpoints/"
