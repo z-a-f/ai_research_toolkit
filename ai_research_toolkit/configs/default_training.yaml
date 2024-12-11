@@ -13,8 +13,9 @@ data:
   max_length: 128
 
 training:
-  max_epochs: 3
-  gpus: 1
+  max_epochs: 1
+  accelerator: cpu
+  devices: auto
   learning_rate: 3e-5
   precision: 16
   output_dir: "./checkpoints/"

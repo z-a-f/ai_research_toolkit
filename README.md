@@ -72,7 +72,7 @@ For now, you can run directly from the source directory after setting your Pytho
      python3 -m venv venv
      source venv/bin/activate
      ```
-   - Install requirements (to be listed later; likely `pytorch_lightning`, `transformers`, `datasets`, `pyyaml`).
+   - Install requirements (to be listed later; likely `lightning`, `transformers`, `datasets`, `pyyaml`).
    
 2. **Run Training:**
    ```bash

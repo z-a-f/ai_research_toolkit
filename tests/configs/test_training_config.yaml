@@ -1,0 +1,22 @@
+model:
+  type: "transformer"
+  name: "bert-base-uncased"
+  task: "classification"
+  num_labels: 2
+
+data:
+  type: "huggingface"
+  dataset_name: "imdb"
+  split: "train[:1%]"
+  val_split: "train[1%:2%]"
+  batch_size: 2
+  max_length: 32
+  num_workers: 8
+
+training:
+  max_epochs: 1
+  accelerator: gpu
+  devices: auto
+  learning_rate: 3.0e-5
+  precision: 32
+  output_dir: "./test_checkpoints/"

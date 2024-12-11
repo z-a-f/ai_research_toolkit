@@ -1,5 +1,5 @@
-import pytorch_lightning as pl
-from pytorch_lightning.callbacks import ModelCheckpoint
+import lightning.pytorch as pl
+from lightning.pytorch.callbacks import ModelCheckpoint
 from ai_research_toolkit.training.factories import get_model, get_datamodule
 from ai_research_toolkit.utils.logging_utils import get_logger
 
@@ -21,8 +21,8 @@ def run_training(config):
 
     trainer = pl.Trainer(
         max_epochs=config['training']['max_epochs'],
-        accelerator='gpu' if config['training']['gpus'] > 0 else 'cpu',
-        devices=config['training']['gpus'] if config['training']['gpus'] > 0 else None,
+        accelerator=config['training']['accelerator'],
+        devices=config['training']['devices'],
         precision=config['training']['precision'],
         callbacks=[checkpoint_callback]
     )

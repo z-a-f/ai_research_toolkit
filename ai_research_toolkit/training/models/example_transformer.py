@@ -23,8 +23,8 @@ class TransformerModel(BaseModel):
             ckpt = torch.load(pretrained_checkpoint, map_location='cpu')
             self.load_state_dict(ckpt['state_dict'])
 
-    def forward(self, input_ids, attention_mask, labels=None):
-        return self.model(input_ids, attention_mask=attention_mask, labels=labels)
+    def forward(self, *args, **kwargs):
+        return self.model(*args, **kwargs)
 
     def training_step(self, batch, batch_idx):
         outputs = self(**batch)

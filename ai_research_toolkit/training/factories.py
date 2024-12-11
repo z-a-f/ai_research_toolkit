@@ -19,17 +19,11 @@ def get_model(config: dict) -> BaseModel:
         raise ValueError(f"Model type {model_type} not recognized.")
 
 def get_datamodule(config: dict) -> BaseDataModule:
-    data_type = config['data']['type']
+    data_type = config['data'].pop('type', None)
     if data_type == 'huggingface':
         # Implement a huggingface-based datamodule for text classification
         from ai_research_toolkit.training.datamodules.base_datamodule import HFTextClassificationDataModule
-        return HFTextClassificationDataModule(
-            dataset_name=config['data']['dataset_name'],
-            split=config['data']['split'],
-            val_split=config['data']['val_split'],
-            batch_size=config['data']['batch_size'],
-            max_length=config['data']['max_length']
-        )
+        return HFTextClassificationDataModule(**config['data'])
     # Add more data module types as needed
     else:
         raise ValueError(f"Data type {data_type} not recognized.")
